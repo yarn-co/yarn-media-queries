@@ -1,0 +1,42 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../yarn-state-behavior/yarn-state-behavior.html">
+
+<script>
+var YarnBehaviors = YarnBehaviors || {};
+
+(function() {
+
+  /**
+  This behavior observes a `yarn-media-queries` element and applies the selected media type to the applied element
+
+  @polymerBehavior YarnBehaviors.MediaQueryBehavior
+  */
+
+  YarnBehaviors._MediaQueryBehavior = {
+
+    observers: [
+      '_mediaQueryChange(state.mediaType)'
+    ],
+
+    _mediaQueryChange: function(media){
+
+      var classList = Polymer.dom(this).classList;
+
+      for(var i = 0; i < this.state.mediaQueries.length; i++){
+
+        classList.remove(this.state.mediaQueries[i].class);
+      }
+
+      classList.add(media);
+    },
+
+  };
+
+  // Compose behaviors
+  YarnBehaviors.MediaQueryBehavior = [
+    YarnBehaviors.StateBehavior,
+    YarnBehaviors._MediaQueryBehavior
+  ];
+
+})();
+</script>
