@@ -9,6 +9,43 @@ var YarnBehaviors = YarnBehaviors || {};
   /**
   This behavior observes a `yarn-media-queries` element and applies the selected media type to the applied element
 
+  Use the `yarn-media-queries` element *once* in your application.  Use the *behavior* on all elements you want to make responsive.
+  ```
+  <link rel="import" href="../bower_components/yarn-media-queries/yarn-media-queries.html">
+  <my-app>
+    <yarn-media-queries></yarn-media-queries>
+    <responsive-element-one></responsive-element-one>
+    <responsive-element-two></responsive-element-two>
+  </my-app>
+  ```
+
+  The behavior applies the winning media type to the host as a class.  Use the host class to adjust the style of child elements.
+  ```
+  <link rel="import" href="../bower_components/yarn-media-queries/yarn-media-query-behavior.html">
+  <dom-module id="responsive-element-one">
+    <style>
+
+      h1{
+        font-size: 3em;
+      }
+
+      :host.medium-screen h1{
+        font-size: 2em;
+      }
+
+      :host.small-screen h1{
+        font-size: 1em;
+      }
+
+    </style>
+
+    <template>
+      <h1>Responsively Sized Header</h1>
+    </template>
+
+  </dom-module>
+  ```
+
   @polymerBehavior YarnBehaviors.MediaQueryBehavior
   */
 

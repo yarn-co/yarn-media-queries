@@ -1,6 +1,22 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../yarn-state-behavior/yarn-state-behavior.html">
 
+<!--
+The `yarn-media-queries` element defines a set of responsive layout media queries to be configured once and used throughout your application via more general class names, e.g. `small-screen`.
+
+Use the `yarn-media-queries` element *once* in your application.  Use the *behavior* on all elements you want to make responsive.
+```
+<link rel="import" href="../bower_components/yarn-media-queries/yarn-media-queries.html">
+<my-app>
+  <yarn-media-queries></yarn-media-queries>
+  <responsive-element-one></responsive-element-one>
+  <responsive-element-two></responsive-element-two>
+</my-app>
+```
+
+The `yarn-media-query-behavior` applies the current winning media type to the host of custom elements.
+-->
+
 <dom-module id="yarn-media-queries">
 
   <style>
