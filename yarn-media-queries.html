@@ -1,12 +1,11 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../yarn-state-behavior/yarn-state-behavior.html">
-
+<link rel="import" href="yarn-media-query-behavior.html">
 <!--
 The `yarn-media-queries` element defines a set of responsive layout media queries to be configured once and used throughout your application via more general class names, e.g. `small-screen`.
 
 Use the `yarn-media-queries` element *once* in your application.  Use the *behavior* on all elements you want to make responsive.
 ```
-<link rel="import" href="../bower_components/yarn-media-queries/yarn-media-queries.html">
 <my-app>
   <yarn-media-queries></yarn-media-queries>
   <responsive-element-one></responsive-element-one>
@@ -15,6 +14,44 @@ Use the `yarn-media-queries` element *once* in your application.  Use the *behav
 ```
 
 The `yarn-media-query-behavior` applies the current winning media type to the host of custom elements.
+
+## Custom Queries
+You may supply a list of custom queries to the `yarn-media-queries` element via the `queries` parameter.
+```
+<dom-module id="my-app">
+
+  <template>
+    <yarn-media-queries queries="{{queries}}"></yarn-media-queries>
+    <responsive-element-one></responsive-element-one>
+    <responsive-element-two></responsive-element-two>
+  </template>
+
+</dom-module>
+<script>
+  (function () {
+    Polymer({
+      is: 'my-app',
+      ready: function(){
+        var queries = [
+          {
+            query: '(min-width: 0px)',
+            class: 'small-screen',
+          },
+          {
+            query: '(min-width: 400px)',
+            class: 'medium-screen'
+          },
+          {
+            query: '(min-width: 1200px)',
+            class: 'large-screen'
+          }
+        ];
+        this.set('queries', queries);
+      }
+    });
+  })();
+</script>
+```
 -->
 
 <dom-module id="yarn-media-queries">
@@ -48,7 +85,7 @@ The `yarn-media-query-behavior` applies the current winning media type to the ho
           observer: '_queriesChanged'
         },
 
-        size:{
+        _size:{
           type: String,
           notify: true,
           observer: '_sizeChange'
@@ -94,7 +131,7 @@ The `yarn-media-query-behavior` applies the current winning media type to the ho
 
         this.set('state.mediaQueries', queries);
 
-        this.set('size', queries[0].class);
+        this.set('_size', queries[0].class);
       },
 
       _queryChange: function(changedQuery){
@@ -111,7 +148,7 @@ The `yarn-media-query-behavior` applies the current winning media type to the ho
           }
         }
 
-        this.set('size', size);
+        this.set('_size', size);
       },
 
       _sizeChange: function(size){

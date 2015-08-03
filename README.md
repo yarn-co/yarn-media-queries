@@ -2,10 +2,10 @@
 Set application-wide media queries so many elements can be responsive without each maintaining an independent list of queries.
 
 ## How it Works
--The `yarn-media-queries` element maintains a list of media queries.
--The last element in the list that matches is the winner.
--The winning media type is stored in application state via yarn-state-behavior.
--`yarn-media-query-behavior` applies the winning media type as a class on the host element.
+ - The `yarn-media-queries` element maintains a list of media queries.
+ - The last element in the list that matches is the winner.
+ - The winning media type is stored in application state via yarn-state-behavior.
+ - `yarn-media-query-behavior` applies the winning media type as a class on the host element.
 
 ## Include the element once
 Use the `yarn-media-queries` element *once* in your application.  e.g.
