@@ -61,7 +61,17 @@ var YarnBehaviors = YarnBehaviors || {};
       '_mediaQueryChange(state.mediaType)'
     ],
 
+    attached: function(){
+
+      //console.log('element attached');
+
+      this._mediaQueryChange(this.state.mediaType);
+
+    },
+
     _mediaQueryChange: function(media){
+
+      //console.log('mediaType set', media);
 
       var classList = Polymer.dom(this).classList;
 
@@ -70,7 +80,7 @@ var YarnBehaviors = YarnBehaviors || {};
         classList.remove(this.state.mediaQueries[i].class);
       }
 
-      classList.add(media);
+      classList.add(this.state.mediaType);
     },
 
   };

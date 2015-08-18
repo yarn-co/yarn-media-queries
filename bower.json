@@ -1,6 +1,6 @@
 {
   "name": "yarn-media-queries",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "keywords": [
     "web-components",
     "polymer"
@@ -14,6 +14,13 @@
     "type": "git",
     "url": "git://github.com/yarn-co/yarn-state-queries.git"
   },
+  "main": [
+    "yarn-media-queries.html",
+    "yarn-media-query-behavior.html"
+  ],
+  "ignore": [
+    "bower_components"
+  ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0"
   },

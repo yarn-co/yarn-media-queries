@@ -82,56 +82,56 @@ You may supply a list of custom queries to the `yarn-media-queries` element via 
         queries: {
           type: Array,
           notify: true,
-          observer: '_queriesChanged'
+          observer: '_queriesChanged',
+          value: [
+
+            {
+              query: '(min-width: 0px)',
+              class: 'small-screen',
+            },
+
+            {
+              query: '(min-width: 500px)',
+              class: 'medium-screen'
+            },
+
+            {
+              query: '(min-width: 1000px)',
+              class: 'large-screen'
+            },
+
+            {
+              query: '(min-width: 1000px) and (max-height: 1000px)',
+              class: 'laptop-screen'
+            }
+
+          ]
         },
 
         _size:{
           type: String,
           notify: true,
-          observer: '_sizeChange'
+          observer: '_sizeChange',
+          value: 'small-screen'
         }
       },
-
-      observers: [
-        '_queryChange(queries.*)'
-      ],
 
       behaviors: [
         YarnBehaviors.StateBehavior
       ],
 
-      ready: function() {
+      observers: [
+        '_queryChange(queries.*)'
+      ],
 
-        this.queries = [
-
-          {
-            query: '(min-width: 0px)',
-            class: 'small-screen',
-          },
-
-          {
-            query: '(min-width: 500px)',
-            class: 'medium-screen'
-          },
-
-          {
-            query: '(min-width: 1000px)',
-            class: 'large-screen'
-          },
-
-          {
-            query: '(min-width: 1000px) and (max-height: 1000px)',
-            class: 'laptop-screen'
-          },
-
-        ];
-      },
 
       _queriesChanged: function(queries){
 
         this.set('state.mediaQueries', queries);
 
         this.set('_size', queries[0].class);
+
+        //console.log('queries changed', queries);
       },
 
       _queryChange: function(changedQuery){
@@ -144,6 +144,8 @@ You may supply a list of custom queries to the `yarn-media-queries` element via 
 
           if(query.queryMatches){
 
+            //console.log('matches', query.class);
+
             size = query.class;
           }
         }
@@ -153,10 +155,10 @@ You may supply a list of custom queries to the `yarn-media-queries` element via 
 
       _sizeChange: function(size){
 
-        this.set('state.mediaType', size);
-
         //console.log('size change: ', size);
-      },
+
+        this.set('state.mediaType', size);
+      }
 
     });
   })();
