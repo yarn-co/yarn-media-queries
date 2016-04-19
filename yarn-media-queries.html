@@ -87,6 +87,11 @@ You may supply a list of custom queries to the `yarn-media-queries` element via 
 
             {
               query: '(min-width: 0px)',
+              class: 'unknown-screen',
+            },
+
+            {
+              query: '(min-width: 1px)',
               class: 'small-screen',
             },
 
@@ -112,7 +117,7 @@ You may supply a list of custom queries to the `yarn-media-queries` element via 
           type: String,
           notify: true,
           observer: '_sizeChange',
-          value: 'small-screen'
+          value: 'unknown-screen'
         }
       },
 
@@ -155,7 +160,7 @@ You may supply a list of custom queries to the `yarn-media-queries` element via 
 
       _sizeChange: function(size){
 
-        //console.log('size change: ', size);
+        //console.log('_manageDrawersByMedia yarn-media-queries: ', this.isAttached, size);
 
         this.set('state.mediaType', size);
       }
